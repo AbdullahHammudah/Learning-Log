@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
+
 import os
 from pathlib import Path
 
@@ -37,11 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+
     # Third party apps
     'bootstrap3',
-    
-    #My apps
+
+    # My apps
     'learning_logs',
     'users',
 ]
@@ -126,12 +127,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-#my settings
+# my settings
 LOGIN_URL = '/userslogin/'
 
 # Settings for django-bootstrap3
 BOOTSTRAP3 = {
-'include_jquery': True,
+    'include_jquery': True,
 }
 
 # Heroku settings
@@ -140,16 +141,21 @@ if os.getcwd() == '/app':
     DATABASES = {
         'default': dj_database_url.config(default='postgres://localhost')
     }
-    
+
     # Honor the 'X-Forwarded-Proto' header for request.is_secure().
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-    
+
     # Allow all host headers.
     ALLOWED_HOSTS = ['*']
-    
+
     # Static asset configuration
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     STATIC_ROOT = 'staticfiles'
     STATICFILES_DIRS = (
         os.path.join(BASE_DIR, 'static'),
     )
+
+# Allow only Heroku to host the project.
+ALLOWED_HOSTS = ['learning-log-amah.herokuapp.com']
+
+DEBUG = False
